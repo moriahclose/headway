@@ -1,6 +1,9 @@
 import './App.css';
-import SideNav from './components/SideNav';
 import "tailwindcss/tailwind.css"
+
+import TopNav from './components/TopNav';
+import SideNav from './components/SideNav';
+
 
 function App() {
   return (
