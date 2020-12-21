@@ -3,16 +3,21 @@ const mediumGray = '#757575';
 const lightGray = '#C4C4C4';
 const green = '#8DDB95';
 
+const sideNavWidth = '240px';
+
 module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       width: {
-        'side-nav': '240px',
+        'side-nav': sideNavWidth,
       },
       height: {
         'top-nav': '40px',
+      },
+      margin: {
+        'side-nav': sideNavWidth
       },
       colors: {
         way: {
