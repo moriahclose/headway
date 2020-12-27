@@ -2,6 +2,7 @@ const darkGray = '#4D5761';
 const mediumGray = '#757575';
 const lightGray = '#C4C4C4';
 const green = '#8DDB95';
+const lightBlue = '#558CC2';
 
 const sideNavWidth = '240px';
 
@@ -24,9 +25,14 @@ module.exports = {
           'dark-gray': darkGray,
           'medium-gray': mediumGray,
           'light-gray': lightGray,
-          'green': green
+          'green': green,
+          'light-blue': lightBlue,
         }
-      }
+      },
+      fontFamily: {
+        title: ['Helvetica Neue'],
+        detail: ['Helvetica']
+      },
     },
   },
   variants: {
