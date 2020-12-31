@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { UserContext } from "../contexts/user";
 
 export default function useUser() {
-	const [ user, logoutUser ] = useContext(UserContext);
+	const [ user, setUser, logoutUser ] = useContext(UserContext);
 
-	return [ user, logoutUser ];
+	return { user, setUser, logoutUser };
 }

@@ -1,7 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
+
+import useUser from "../../hooks/useUser";
 
 export default function Goals() {
+  const { user, setUser } = useUser();
 
-  return <div className="text-2xl font-bold">My Goal</div>
+  console.log('what about this')
+
+  useEffect(() => {
+    console.log('user', user)
+  }, [])
+
+  return <div className="text-2xl font-bold">User</div>
 }
