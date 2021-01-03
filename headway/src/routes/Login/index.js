@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import logo from "../../assets/Temp Logo Large.png";
 
-import useUser from "../../hooks/useUser";
+import useLocalStorage from "../../hooks/helpers/useLocalStorage";
+
+const LOCAL_STORAGE_KEY = 'headway_uid';
 
 export default function Login() {
-  const { user, setUser } = useUser();
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
+  const [ _, setStoredToken ] = useLocalStorage(LOCAL_STORAGE_KEY);
 
   function login(e) {
     e.preventDefault();
@@ -22,8 +24,8 @@ export default function Login() {
       }
     }).then(({ data }) => {
       console.log('data', data)
-      setUser(u => ({...u, token: data.authToken}));
-      // window.location = '/goals';
+      setStoredToken(data.authToken);
+      window.location = "/home";
     });
   }
 

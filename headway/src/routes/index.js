@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import axios from 'axios';
+import { BrowserRouter as Router, Switch, Route, useLocation } from "react-router-dom";
 
 import {UserProvider} from "../contexts/user";
 
@@ -7,6 +8,7 @@ import Layout from '../components/Layout';
 
 import Login from './Login';
 import Register from './Register';
+import Home from './Home';
 import Calendar from './Calendar';
 import Goals from './Goals';
 import Tasks from './Tasks';
@@ -24,6 +26,9 @@ export default function Routes() {
             <Register />
           </Route>
           <Layout>
+            <Route path="/home">
+              <Home />
+            </Route>
             <Route path="/goals">
               <Goals />
             </Route>

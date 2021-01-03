@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^12.6.0",
     "autoprefixer": "^9.8.6",
     "axios": "^0.21.0",
+    "date-fns": "^2.16.1",
     "npm-watch": "^0.7.0",
     "postcss": "^7.0.35",
     "react": "^17.0.1",
