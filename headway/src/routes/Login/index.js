@@ -5,7 +5,7 @@ import logo from "../../assets/Temp Logo Large.png";
 
 import useLocalStorage from "../../hooks/helpers/useLocalStorage";
 
-const LOCAL_STORAGE_KEY = 'headway_uid';
+import { LOCAL_STORAGE_KEY } from "../../constants";
 
 export default function Login() {
   const [ email, setEmail ] = useState('');

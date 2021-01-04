@@ -7,12 +7,14 @@ import useUser from '../../hooks/useUser';
 
 import SectionTitle from '../../components/SectionTitle';
 
-const LOCAL_STORAGE_KEY = 'headway_uid';
+import { LOCAL_STORAGE_KEY } from '../../constants';
+
+const defaultGoalColor = '#5EB1BF';
+const defaultGoalTextColor = "#FFFFFF";
 
 
 export default function Home() {
   const { user, setUser } = useUser();
-  const { goals, setGoals } = useState([]);
   const [ storedToken, setStoredToken, hasCheckedLocalStorage ] = useLocalStorage(LOCAL_STORAGE_KEY);
 
   useEffect(() => {
@@ -38,56 +40,54 @@ export default function Home() {
   }, [storedToken]);
 
   useEffect(() => {
-    axios({
-      url: '',
-      headers: {
-        'content-type': 'application/json',
-        'authorization': `Bearer ${ storedToken }`
-      }
-    }).then( ({data}) => { 
-
-    });
-
-  }, [user]);
+    if (user.id) {
+      axios({
+        url: `https://x8ki-letl-twmt.n7.xano.io/api:R7Ak7I0A/user/${user.id}/goals/`,
+        headers: {
+          'content-type': 'application/json',
+          'authorization': `Bearer ${ storedToken }`
+        }
+      }).then( ({data}) => {
+        setUser(u => ({...u, goals: data.goals}));
+      });
+    }
+  }, [user.id]);
 
   function createNewGoal() {
-    console.log('storedToken', storedToken, 'userID', user.id)
-    axios({
-      method: 'post',
-      data: {
-        user_id: user.id
-      },
-      url: 'https://x8ki-letl-twmt.n7.xano.io/api:R7Ak7I0A/goals',
-      headers: {
-        'content-type': 'application/json',
-        'authorization': `Bearer ${ storedToken }`
-      },
-    }).then( ({data}) => {
-      console.log('data', data.goal.id)
-      window.location = `/goals/${data.goal.id}`
-    });
+    if (storedToken && user.id) {
+      axios({
+        method: 'post',
+        data: {
+          user_id: user.id
+        },
+        url: 'https://x8ki-letl-twmt.n7.xano.io/api:R7Ak7I0A/goals',
+        headers: {
+          'content-type': 'application/json',
+          'authorization': `Bearer ${ storedToken }`
+        },
+      }).then( ({data}) => {
+        console.log('data', data.goal.id)
+        window.location = `/goals/${data.goal.id}`
+      });
+    }
   }
 
-  return(<div className="w-full flex flex-col items-center">
+  return (<div className="w-full flex flex-col items-center">
     <h1 className="text-xl font-medium mb-12 self-start">Home</h1>
 
     <div className="w-3/5 flex flex-col space-y-10">
       <section>
-        <SectionTitle title={'Goals'} />
+        <SectionTitle title={'Goals'} action="+ Add a Goal" onActionClick={createNewGoal} />
 
-        <div className="flex flex-col sm:flex-row mt-6">
-          { user && user.goals && user.goals.length > 0 && user.goals.map( (goal) => <div key={goal.id} className="h-32 w-32 rounded-md text-center text-lg cursor-pointer" style={{backgroundColor: goal.color, color: goal.textColor}}>
-            <div className="mt-4 max-h-full truncate">{ goal.title }</div>
+        <div className="flex flex-col sm:flex-row flex-wrap justify-between mt-6">
+          { user.goals && user.goals.length > 0 && user.goals.map( (goal) => <div key={goal.id} className="mt-2 h-32 w-32 rounded-md text-center text-lg cursor-pointer" onClick={() => window.location = `/goals/${goal.id}`} style={{backgroundColor: goal.color || defaultGoalColor, color: goal.textColor || defaultGoalTextColor }}>
+            <div className="mt-4 max-h-full truncate">{ goal.title || `Goal ${goal.id}`}</div>
           </div>)}
-          <div onClick={createNewGoal} className="transition-height h-32 w-32 hover:h-36 duration-500 ease-in-out rounded-md text-center text-way-dark-gray text-lg border border-way-light-gray cursor-pointer bg-white">
-            <div className="text-5xl text-left ml-2 text-way-light-gray opacity-50">+</div>
-            <div className="mt-2 max-h-full overflow-y-truncate px-4">Create a Goal</div>
-          </div>
         </div>
       </section>
 
       <section>
-        <SectionTitle title={'Today'} subtitle={format(new Date(), 'PPP')} />
+        <SectionTitle title={'Today'} subtitle={format(new Date(), 'PPP')} action="+ Add a Task" />
       </section>
     </div>
   </div>);

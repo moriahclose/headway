@@ -29,7 +29,7 @@ export default function Routes() {
             <Route path="/home">
               <Home />
             </Route>
-            <Route path="/goals">
+            <Route path="/goals/:goalId">
               <Goals />
             </Route>
             <Route path="/tasks">

@@ -2,7 +2,7 @@ import React, { useState, createContext, useEffect } from 'react';
 import axios from 'axios';
 import useLocalStorage from "../hooks/helpers/useLocalStorage";
 
-const LOCAL_STORAGE_KEY = 'headway_uid';
+import { LOCAL_STORAGE_KEY } from "../constants";
 
 const INITIAL_STATE = {
   id: null,
