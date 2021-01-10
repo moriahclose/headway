@@ -1,37 +1,33 @@
-const darkGray = '#4D5761';
-const mediumGray = '#757575';
-const lightGray = '#C4C4C4';
-const green = '#8DDB95';
-const lightBlue = '#558CC2';
 
-const sideNavWidth = '240px';
+const lightGray = '#F6F8F9';
+const lightBlue = '#5EB1BF';
+
+const loginWidth = '480px';
+const loginHeight = '616px';
+
+const primaryFont = 'Comfortaa';
+const secondaryFont = 'Montserrat';
 
 module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-      width: {
-        'side-nav': sideNavWidth,
-      },
-      height: {
-        'top-nav': '40px',
-      },
-      margin: {
-        'side-nav': sideNavWidth
-      },
       colors: {
         way: {
-          'dark-gray': darkGray,
-          'medium-gray': mediumGray,
           'light-gray': lightGray,
-          'green': green,
           'light-blue': lightBlue,
         }
       },
+      height: {
+        'login': loginHeight,
+      },
+      width: {
+        'login': loginWidth,
+      },
       fontFamily: {
-        title: ['Helvetica Neue'],
-        detail: ['Helvetica']
+        primary: [primaryFont],
+        secondary: [secondaryFont]
       },
       transitionProperty: {
         height: 'height',

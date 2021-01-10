@@ -29,26 +29,11 @@ export default function Login() {
     });
   }
 
-  return (<main className="flex h-screen">
-    <div className="w-3/5 h-full flex flex-col items-center justify-center">
-      <div className="flex flex-col w-4/5 h-1/2 justify-between">
-        <div>
-          <div className="flex justify-between">
-            <h1 className="text-5xl text-way-dark-gray font-title">HeadWay</h1>
-            <img src={logo} />
-          </div>
-          <div className="text-2xl text-way-dark-gray font-detail pt-2">Make systems. Meet goals.</div>
-        </div>
-        <form className="flex flex-col justify-between h-3/5 pt-6">
-          <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" className="w-96 border-b-2 border-black focus:outline-none"/>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" className="w-96 border-b-2 border-black focus:outline-none"/>
-          <button onClick={login} className="h-14 w-96 bg-way-light-gray text-bg-way-dark-gray focus:outline-none">Log In</button>
-        </form>
-        <a className="text-way-dark-gray" href="register">Need a HeadWay account? <span className="text-way-light-blue">Register here.</span></a>
+  return (<div className="absolute inset-0 flex items-center justify-center bg-way-light-gray">
+    <div className="w-full h-full sm:w-login sm:h-login bg-white rounded-xl">
+      <div className="flex flex-col p-10 items-center">
+        <div className="font-primary text-2xl items-center text-way-light-blue">HeadWay</div>
       </div>
     </div>
-    <div className="hidden md:block login-graphics bg-way-dark-gray w-2/5 h-full">
-
-    </div>
-  </main>);
+  </div>);
 }
