@@ -1,13 +1,13 @@
 import React from 'react';
 import axios from 'axios';
-import { BrowserRouter as Router, Switch, Route, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import {UserProvider} from "../contexts/user";
 
 import Layout from '../components/Layout';
 
-import Login from './Login';
-import Register from './Register';
+import Login from './Authentication/Login';
+import SignUp from './Authentication/SignUp';
 import Home from './Home';
 import Calendar from './Calendar';
 import Goals from './Goals';
@@ -19,11 +19,11 @@ export default function Routes() {
     <Router>
       <UserProvider>
         <Switch>
-          <Route path={"/login"}>
+          <Route path={"/users/login"}>
             <Login />
           </Route>
-          <Route path={"/register"}>
-            <Register />
+          <Route path={"/users/signup"}>
+            <SignUp />
           </Route>
           <Layout>
             <Route path="/home">

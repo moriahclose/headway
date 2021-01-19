@@ -2,11 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css?family=${urlifyFontnames(Comfortaa)}&display=swap');
-@import url('https://fonts.googleapis.com/css?family=${urlifyFontnames(Montserrat)}&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Comfortaa&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+html, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
 
 body {
-  margin: 0;
+  height: 100%;
   font-family: -apple-system, BlinkMacSystemFont, 'Comfortaa', 'Montserrat', 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
