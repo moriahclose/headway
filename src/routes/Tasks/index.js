@@ -32,7 +32,6 @@ export default function Tasks() {
     setCurrentTask({});
   }
 
-  console.log('location', location)
   return (<>
     <nav className="flex mt-2">
       <NavLink to="/tasks/goals" activeClassName={activeClasses} className="font-secondary font-bold  text-way-dark-gray mr-2">Goals</NavLink>

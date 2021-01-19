@@ -20,15 +20,25 @@ function UserProvider(props) {
   const [ storedToken, setStoredToken, hasCheckedLocalStorage ] = useLocalStorage(LOCAL_STORAGE_KEY);
 
   function logoutCurrentUser() {
-    console.log('are we doing this maybe?')
     setState(INITIAL_STATE);
     setStoredToken('');
     window.location = window.location.origin + '/login';
   }
 
   useEffect(() => {
-    console.log('user in hook', state)
-  }, [state])
+    if (storedToken && hasCheckedLocalStorage) {
+      axios({
+        url: 'https://x8ki-letl-twmt.n7.xano.io/api:R7Ak7I0A/auth/me',
+        method: 'get',
+        headers: {
+          'content-type': 'application/json',
+          'authorization': `Bearer ${ storedToken }`
+        }
+      }).then(({ data }) => {
+        setState(data);
+      });
+    }
+  }, [storedToken, hasCheckedLocalStorage]);
 
   return (
 		<UserContext.Provider value={[state, setState, logoutCurrentUser]}>
